@@ -1,11 +1,29 @@
 import readline from 'node:readline/promises'
-import { stdin as input, stdout as output } from 'node:process';
+import { parseCommand } from './utils/argParser.js';
 
 export function startRepl() {
-    const rl = readline.createInterface({ input, output });
-    rl.setPrompt('>  ')
-    rl.prompt()
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+        prompt: '> '
+    });
+
     rl.on('line', (line) => {
-    console.log(`Received: ${line}`);
-});
+        if (line.trim() === '.exit') {
+            rl.close();
+        } else {
+            console.log(`Command received: ${JSON.stringify(parseCommand(line))}`);
+            rl.prompt();
+        }
+    });
+
+    rl.prompt()
+    rl.on('SIGINT', () => {
+        console.log('\nThank you for using Data Processing CLI!');
+        rl.close();
+    });
+
+    rl.on('close', () => {
+        process.exit(0);
+    });
 }

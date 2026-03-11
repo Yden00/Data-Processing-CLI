@@ -1,11 +1,12 @@
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { startRepl } from './repl.js';
+import os from "node:os"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-let currentDir = __dirname;
+let currentDir = os.homedir();
 
 async function main() {
     printWelcome();

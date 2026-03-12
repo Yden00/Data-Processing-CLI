@@ -1,6 +1,5 @@
 export function parseCommand(line) {
     const [command, ...args] = line.split(' ');
-    console.log(command, args)
     const args_obj = {};
     args_obj.positional = []
     for (let i = 0; i < args.length; i++) {
@@ -13,5 +12,5 @@ export function parseCommand(line) {
             i++;
         }
     }
-    return args_obj
+    return { command, ...args_obj }
 }

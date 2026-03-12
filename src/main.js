@@ -18,7 +18,7 @@ function printWelcome() {
     console.log('Welcome to Data Processing CLI!');
 }
 
-function printCurrentDirectory() {
+export function printCurrentDirectory() {
     console.log(`You are currently in ${currentDir}`);
 }
 

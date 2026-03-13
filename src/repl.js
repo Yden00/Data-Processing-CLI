@@ -30,6 +30,11 @@ export function startRepl() {
           console.log("Operation failed");
         }
       }
+    } else if (args.command === "up") {
+      const went_up = up_command();
+      if (went_up) {
+        printCurrentDirectory();
+      }
     } else if (args.command === "ls") {
       const list_dir_files = await ls_command();
       list_dir_files.forEach((el) => console.log(el));
